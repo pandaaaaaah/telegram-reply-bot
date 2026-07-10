@@ -37,11 +37,12 @@ async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
             response.choices[0].message.content
         )
+except Exception as e:
+    await update.message.reply_text(
+        f"❌ Error:\n{e}"
+    )
 
-    except Exception as e:
-        await update.message.reply_text(
-            f"❌ Error:\n{e}"
-        app = Application.builder().token(TOKEN).build()
+app = Application.builder().token(TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
 app.add_handler(
